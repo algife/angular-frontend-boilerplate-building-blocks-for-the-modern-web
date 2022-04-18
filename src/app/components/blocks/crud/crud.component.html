@@ -1,0 +1,26 @@
+<h2>Perform CRUD operations in the API:</h2>
+<div class="buttons-wrapper">
+  <button type="button" class="crud-btn crud-btn--create" mat-raised-button color="secondary" (click)="createItem()">
+    Create One
+  </button>
+  <button type="button" class="crud-btn crud-btn--get" mat-raised-button color="primary" (click)="fetchItems()">
+    Get all (Read)
+  </button>
+</div>
+
+<div class="results-container">
+  <h2 class="results-title">Results:</h2>
+  <div class="results">
+    <ng-container *ngIf="(itemsLoaded$ | async)?.length === 0">
+      <span>There are no items yet</span>
+    </ng-container>
+    <mat-card class="results-item" *ngFor="let item of itemsLoaded$ | async">
+      <pre class="item-content">{{ item | json }}</pre>
+
+      <div class="action-buttons">
+        <mat-icon class="edit-button" (click)="editItem(item.id)">edit</mat-icon>
+        <mat-icon class="delete-button" (click)="deleteItem(item.id)">delete</mat-icon>
+      </div>
+    </mat-card>
+  </div>
+</div>

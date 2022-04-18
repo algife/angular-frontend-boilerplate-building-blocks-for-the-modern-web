@@ -1,0 +1,52 @@
+<h2>Autocomplete forms</h2>
+
+<form name="hiredevs-form" #devsForm class="autocomplete-form hiredevs-form">
+  <mat-form-field class="autocomplete-field" appearance="fill">
+    <mat-label>Devs to Hire Autocomplete Form</mat-label>
+    <input
+      type="text"
+      placeholder="What talented full-stack developer do you want to hire?"
+      aria-label="Autocomplete Names"
+      matInput
+      [formControl]="hiredevsCtrl"
+      [matAutocomplete]="autocomplete1"
+      [maxlength]="hiredevsCharsLimit"
+    />
+    <mat-autocomplete #autocomplete1="matAutocomplete">
+      <mat-option *ngFor="let optionF1 of filteredOptionsDevs | async" [value]="optionF1">
+        {{ optionF1 }}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-hint
+      class="hiredevs-hint"
+      [ngStyle]="{
+        color: (hiredevsCtrl.value?.length || 0) > hiredevsCharsLimit ? 'tomato' : 'inherit'
+      }"
+    >
+      {{ hiredevsCtrl.value?.length || 0 }} of max. {{ hiredevsCharsLimit | number }} characters
+    </mat-hint>
+  </mat-form-field>
+</form>
+
+<br />
+
+<form name="techstack-form" #techstackForm class="autocomplete-form techstack-form">
+  <mat-form-field class="autocomplete-field" appearance="fill">
+    <mat-label>Tech Stack Autocomplete Search Form</mat-label>
+    <input
+      type="text"
+      placeholder="Search by main technology stack expertise"
+      aria-label="Autocomplete Search"
+      matInput
+      [formControl]="techstackCtrl"
+      [matAutocomplete]="autocomplete2"
+    />
+    <mat-autocomplete #autocomplete2="matAutocomplete">
+      <mat-option *ngFor="let optionF2 of filteredOptionsTechstack | async" [value]="optionF2">
+        {{ optionF2 }}
+      </mat-option>
+    </mat-autocomplete>
+    <!-- HINT -->
+    <mat-hint class="search-input-hint">{{ techstackHint }}</mat-hint>
+  </mat-form-field>
+</form>

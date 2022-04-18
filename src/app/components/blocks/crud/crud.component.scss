@@ -1,0 +1,58 @@
+@use 'sass:color';
+
+$editButtonColor: slateblue;
+$deleteButtonColor: darkred;
+
+.buttons-wrapper {
+  display: flex;
+
+  .crud-btn {
+    flex: 1 1 auto;
+    margin: 0 1rem;
+  }
+}
+
+.results-container {
+  display: flex;
+  flex-flow: column wrap;
+  background-color: #ccc;
+  border-radius: 1rem;
+  margin: 1rem;
+  padding: 1rem;
+
+  .results-item {
+    margin-bottom: 0.618rem;
+    display: flex;
+    justify-content: stretch;
+  }
+}
+
+.item-content {
+  flex: 3 auto;
+  margin-right: auto;
+}
+
+.action-buttons {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  cursor: pointer;
+
+  & > * {
+    padding: 0.618em;
+
+    &.edit-button {
+      color: $editButtonColor;
+      &:hover {
+        color: color.scale($editButtonColor, $lightness: 20%);
+      }
+    }
+
+    &.delete-button {
+      color: $deleteButtonColor;
+      &:hover {
+        color: color.scale($deleteButtonColor, $lightness: 20%);
+      }
+    }
+  }
+}
